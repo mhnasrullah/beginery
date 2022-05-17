@@ -19,6 +19,7 @@ use App\Http\Controllers\userController;
 
 Route::get('/',[homeController::class,'index']);
 Route::get('/event/{title}',[homeController::class,'detailTitle']);
+Route::get('/event/join/{title}',[homeController::class,'join']);
 Route::get('/auth',[userController::class,'auth']);
 Route::post('/auth/reg',[userController::class,'reg']);
 Route::post('/auth/log',[userController::class,'log']);

@@ -150,7 +150,7 @@
                                                 <div class="text-white">Sec</div>
                                             </div>
                                         </div>
-                                        <a href={{"/event/".$e->title}}
+                                        <a href={{"/event/".str_replace(' ','__',$e->title)}}
                                             target="_blank" type="button"
                                             class="btn btn-light rounded-pill w-100 fw-bold">JOIN
                                             EVENT</a>

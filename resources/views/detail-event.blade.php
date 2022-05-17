@@ -86,10 +86,15 @@
                         <div class="text-white">Sec</div>
                     </div>
                 </div>
-                <a href={{"/event/".$event->title}}
-                                            target="_blank" type="button"
+                
+                @if (! $join)
+                <a href={{"/event/join/".str_replace(' ','__',$event->title)}}
                                             class="mt-4 btn btn-light rounded-pill w-100 fw-bold">JOIN
                                             EVENT</a>
+                @else
+                <p class="mt-4 text-center rounded-pill w-100 fw-bold">Selamat Anda Telah Terdaftar<br><span class="fw-normal">Silahkan check email anda</span></p>
+                @endif
+                
             </div>
         </div>
     </div>

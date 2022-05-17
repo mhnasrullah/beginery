@@ -63,15 +63,15 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
                 <ul class="navbar-nav mb-2 mb-md-0 ">
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#collaborate"
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/#collaborate"
                             class="nav-link">Service</a>
                     </li>
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#event" class="nav-link">Event</a>
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/#event" class="nav-link">Event</a>
                     </li>
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#content" class="nav-link">Class</a>
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/#content" class="nav-link">Class</a>
                     </li>
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#contact" class="nav-link">Contact</a>
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/#contact" class="nav-link">Contact</a>
                     </li>
                     @if (Auth::user() != null)
                     <li class="nav-item fw-semibold mx-3 text-uppercase"><a class="nav-link disabled fw-bold text-black"><span class="text-capitalize fw-normal">Hello, </span>{{Auth::user()->name}}</a>

@@ -14,7 +14,10 @@ class homeController extends Controller
     public function index(){
         // dd(Auth::user());
         $data = [
-            'event' => Event::all()
+            'event' => Event::select("*")
+                        ->orderByDesc('created_at')
+                        ->paginate(4)
+
         ];
         return view('homepage',$data);
     }

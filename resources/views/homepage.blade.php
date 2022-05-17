@@ -70,8 +70,8 @@
             </div>
         </div>
         <div class="container-fluid bg-event">
-            <div class="container">
-                <div class="row py-3">
+            <div class="container py-4">
+                <div class="row">
                     <script src="/js/cntdown.js"></script>
                     @foreach ($event as $e)
                     <div class="col-lg-6 col-12">
@@ -79,7 +79,7 @@
                             <div class="row g-0">
                                 <div class="col-md-5">
                                     <img src={{'/storage/img/event/'.$e->poster}} class="img-fluid rounded-start"
-                                        alt="poster test">
+                                        alt="poster test" style="object-fit : cover; object-position: center;">
                                 </div>
                                 <div class="col-md-7 p-4 d-flex align-items-center">
                                     <div class="card-body font-event">
@@ -162,6 +162,7 @@
                         
                     @endforeach
                 </div>
+                        {{ $event->links() }}
             </div>
         </div>
     </section>

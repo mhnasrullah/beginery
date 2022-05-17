@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\userController;
@@ -24,7 +24,7 @@ Route::post('/auth/reg',[userController::class,'reg']);
 Route::post('/auth/log',[userController::class,'log']);
 
 
-Route::get('/a/event',[eventController::class,'index']);
+Route::get('/a/event',[eventController::class,'index'])->middleware(IsAdmin::class);
 Route::post('/a/event',[eventController::class,'store']);
 Route::get('/a/event/e/{id}',[eventController::class,'edit']);
 Route::post('/a/event/u/{id}',[eventController::class,'update']);

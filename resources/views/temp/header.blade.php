@@ -73,6 +73,9 @@
                     </li>
                     <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="#contact" class="nav-link">Contact</a>
                     </li>
+
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a class="nav-link disabled fw-bold text-black"><span class="text-capitalize fw-normal">Hello, </span>{{Auth::user()->name}}</a>
+                    </li>
                 </ul>
             </div>
         </div>

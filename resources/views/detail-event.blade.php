@@ -8,6 +8,15 @@
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <h1>{{$event->title}}</h1>
+
+                <h6 class="mt-4">Tata Tertib</h6>
+                <ul class="mb-4">
+                    <li>Pengguna yang telah terdaftar diharapkan hadir 15 menit sebelum acara dimulai</li>
+                    <li>Pengguna dapat menghubungi admin jika ingin melakukan pembatalan</li>
+                    <li>Pengguna diharapkan mengikuti jalannya acara secara kondusif</li>
+                    <li>Link acara akan dikirimkan 30 menit sebelum acara dimulai</li>
+                </ul>
+
                 <script src="/js/cntdown.js"></script>
                 <div class="row">
                     <div class="col-3 text-center">

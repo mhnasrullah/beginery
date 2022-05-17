@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\eventController;
+use App\Http\Controllers\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,9 @@ use App\Http\Controllers\eventController;
 
 Route::get('/',[homeController::class,'index']);
 Route::get('/event/{title}',[homeController::class,'detailTitle']);
+Route::get('/auth',[userController::class,'auth']);
+Route::post('/auth/reg',[userController::class,'reg']);
+Route::post('/auth/log',[userController::class,'log']);
 
 
 Route::get('/a/event',[eventController::class,'index']);

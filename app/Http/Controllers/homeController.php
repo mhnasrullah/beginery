@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class homeController extends Controller
 {
     public function index(){
+        // dd(Auth::user());
         $data = [
             'event' => Event::all()
         ];
@@ -16,8 +18,6 @@ class homeController extends Controller
     }
 
     public function detailTitle($title){
-        // dd(Event::where('title',$title)->first());
-
         $data = [
             'event' => Event::where('title',$title)->first()
         ];

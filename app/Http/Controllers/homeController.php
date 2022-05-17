@@ -16,7 +16,7 @@ class homeController extends Controller
         $data = [
             'event' => Event::select("*")
                         ->orderByDesc('created_at')
-                        ->paginate(4)
+                        ->paginate(4,['*'],'events')
 
         ];
         return view('homepage',$data);

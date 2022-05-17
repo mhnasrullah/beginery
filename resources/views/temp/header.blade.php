@@ -74,9 +74,25 @@
                     <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/#contact" class="nav-link">Contact</a>
                     </li>
                     @if (Auth::user() != null)
-                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a class="nav-link disabled fw-bold text-black"><span class="text-capitalize fw-normal">Hello, </span>{{Auth::user()->name}}</a>
-                    @endif
+                    <div class="position-relative">
+                        <li class="nav-item fw-semibold mx-3 text-uppercase"><button id="userBtn" class="nav-link bg-transparent border-0 fw-bold text-black"><span class="text-capitalize fw-normal" >Hello, </span>{{Auth::user()->name}}</button></li>
+                        <div class="p-3 position-absolute bg-white rounded-3 shadow d-none" id="popOut">
+                            <a href="/auth/out" class="btn btn-danger">Logout</a>
+                        </div>
+                    </div>
+                    <script>
+                        let userBtn = document.getElementById("userBtn");
+                        let popOut = document.getElementById("popOut");
+
+                        userBtn.addEventListener("click",()=>{
+                            popOut.classList.toggle("d-none");
+                        })
+                    </script>
+                    @else
+                    <li class="nav-item fw-semibold mx-3 text-uppercase"><a href="/auth" class="btn bg-blue text-white">Log in</a>
                     </li>
+                    @endif
+                    
                 </ul>
             </div>
         </div>

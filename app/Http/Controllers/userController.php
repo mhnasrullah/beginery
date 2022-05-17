@@ -42,6 +42,12 @@ class userController extends Controller
         }
     }
 
+    public function out(){
+        session()->flush();
+        Auth::logout();
+        return redirect('/');
+    }
+
     /**
      * Display a listing of the resource.
      *

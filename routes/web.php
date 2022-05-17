@@ -23,6 +23,7 @@ Route::get('/event/join/{title}',[homeController::class,'join']);
 Route::get('/auth',[userController::class,'auth']);
 Route::post('/auth/reg',[userController::class,'reg']);
 Route::post('/auth/log',[userController::class,'log']);
+Route::get('/auth/out',[userController::class,'out']);
 
 
 Route::get('/a/event',[eventController::class,'index'])->middleware(IsAdmin::class);

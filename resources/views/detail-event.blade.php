@@ -88,9 +88,57 @@
                 </div>
                 
                 @if (! $join)
-                <a href={{"/event/join/".str_replace(' ','__',$event->title)}}
-                                            class="mt-4 btn btn-light rounded-pill w-100 fw-bold">JOIN
-                                            EVENT</a>
+                    @if (Auth::user()!=null)
+                        <a href={{"/event/join/".str_replace(' ','__',$event->title)}}
+                                                    class="mt-4 btn btn-light rounded-pill w-100 fw-bold">JOIN
+                                                    EVENT</a>
+                    @else
+                        <a class="mt-4 btn btn-light rounded-pill w-100 fw-bold" id="btnjoinguest">JOIN EVENT AS A GUEST</a>
+                        <div id="joinguest" class="border border-2 p-3 mt-4 rounded d-none">
+                            <form >
+                                <div class="mb-3">
+                                    <label for="nama">Nama Lengkap</label>
+                                    <input class="form-control rounded-pill" type="text" required id="nama">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Email</label>
+                                    <input class="form-control rounded-pill" type="email" required id="email">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="alamat">Alamat</label>
+                                    <input class="form-control rounded-pill" type="text" required id="alamat">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pekerjaan">Pekerjaan</label>
+                                    <input class="form-control rounded-pill" type="text" required id="pekerjaan">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tanggal">Tanggal Lahir</label>
+                                    <input class="form-control rounded-pill" type="date" required id="tanggal">
+                                </div>
+                                <button type="submit" class="mt-4 btn btn-light rounded-pill w-100 fw-bold" id="submitguest">JOIN</button>
+                            </form>
+                        </div>
+                        <p id="scsjoinguest" class="mt-4 text-center rounded-pill w-100 fw-bold d-none">Selamat Anda Telah Terdaftar<br><span class="fw-normal">Silahkan check email anda</span></p>
+                        <script>
+                            let btnjoinguest = document.getElementById("btnjoinguest");
+                            let joinguest = document.getElementById("joinguest");
+                            let submitguest = document.getElementById("submitguest");
+                            let scsjoinguest = document.getElementById("scsjoinguest");
+
+                            btnjoinguest.addEventListener("click",()=>{
+                                btnjoinguest.classList.add("d-none");
+                                joinguest.classList.remove("d-none");
+                            });
+
+                            submitguest.addEventListener("click",(e)=>{
+                                e.preventDefault();
+                                joinguest.classList.add("d-none");
+                                scsjoinguest.classList.remove("d-none");
+                            })
+
+                        </script>
+                    @endif
                 @else
                 <p class="mt-4 text-center rounded-pill w-100 fw-bold">Selamat Anda Telah Terdaftar<br><span class="fw-normal">Silahkan check email anda</span></p>
                 @endif

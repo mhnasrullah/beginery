@@ -77,7 +77,10 @@
                     <div class="position-relative">
                         <li class="nav-item fw-semibold mx-3 text-uppercase"><button id="userBtn" class="nav-link bg-transparent border-0 fw-bold text-black"><span class="text-capitalize fw-normal" >Hello, </span>{{Auth::user()->name}}</button></li>
                         <div class="p-3 position-absolute bg-white rounded-3 shadow d-none" id="popOut">
-                            <a href="/auth/out" class="btn btn-danger">Logout</a>
+                            @if (Auth::user()->role == "admin")
+                                <a href="/a/dashboard" class="btn btn-link text-decoration-none text-dark">Dashboard</a>
+                            @endif
+                            <a href="/auth/out" class="btn btn-link text-decoration-none text-danger">Logout</a>
                         </div>
                     </div>
                     <script>

@@ -18,6 +18,15 @@
                           <input type="datetime-local" class="form-control" id="time" required name="time">
                         </div>
                         <div class="mb-3">
+                          <label for="service" class="form-label">Service</label>
+                          <select class="form-select" name="service" id="service">
+                            <option selected value="">No Service</option>
+                            @foreach ($service as $s)
+                                <option value={{$s->id}}>{{$s->nama}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <div class="mb-3">
                           <label for="poster" class="form-label">Poster</label>
                           <input type="file" class="form-control" id="poster" required name="poster">
                         </div>
@@ -37,6 +46,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$e->title}}</h5>
                             <p class="card-text">On : {{$e->time}}</p>
+                            <p class="card-text fst-italic">{{$e->service_id == null ? "No service" : $e->service->nama}}</p>
                             <hr>
                             <div class="d-flex gap-3">
                                 <a href="/a/event/e/{{$e->id}}" class="btn btn-info px-4">Edit</a>

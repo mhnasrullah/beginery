@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Service;
 use App\Models\User;
 use App\Models\UserEvent;
 use Illuminate\Support\Facades\Storage;
@@ -14,10 +15,8 @@ class homeController extends Controller
     public function index(){
         // dd(Auth::user());
         $data = [
-            'event' => Event::select("*")
-                        ->orderByDesc('created_at')
-                        ->paginate(4,['*'],'events')
-
+            'event' => Event::select("*")->orderByDesc('created_at')->paginate(4,['*'],'events'),
+            'service' => Service::select("*")->orderByDesc('created_at')->paginate(4,['*'],'services')
         ];
         return view('homepage',$data);
     }
@@ -27,9 +26,11 @@ class homeController extends Controller
         $user = User::find(Auth::id());
 
         $joined = false;
-        foreach ($user->event as $e) {
-            if($e->pivot->event_id == $event->id){
-                $joined = true;
+        if(Auth::user() != null){
+            foreach ($user->event as $e) {
+                if($e->pivot->event_id == $event->id){
+                    $joined = true;
+                }
             }
         }
         
@@ -51,5 +52,14 @@ class homeController extends Controller
         ]);
 
         return redirect('/event/'.str_replace(' ','__',$title));
+    }
+
+    public function eventService($id){
+        $data = [
+            'event' => Event::where('service_id',$id)->get(),
+            'service' => Service::find($id)
+        ];
+        return view('event-by-service',$data);
+        // dd($data);
     }
 }

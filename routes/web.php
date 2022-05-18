@@ -5,6 +5,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\eventController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\serviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,18 +19,40 @@ use App\Http\Controllers\userController;
 */
 
 Route::get('/',[homeController::class,'index']);
+Route::get('/s/{id}',[homeController::class,'eventService']);
 Route::get('/event/{title}',[homeController::class,'detailTitle']);
 Route::get('/event/join/{title}',[homeController::class,'join']);
+
 Route::get('/auth',[userController::class,'auth']);
 Route::post('/auth/reg',[userController::class,'reg']);
 Route::post('/auth/log',[userController::class,'log']);
 Route::get('/auth/out',[userController::class,'out']);
 
+Route::middleware(IsAdmin::class)->group(function () {
 
-Route::get('/a/event',[eventController::class,'index'])->middleware(IsAdmin::class);
-Route::post('/a/event',[eventController::class,'store']);
-Route::get('/a/event/e/{id}',[eventController::class,'edit']);
-Route::post('/a/event/u/{id}',[eventController::class,'update']);
-Route::get('/a/event/d/{id}',[eventController::class,'destroy']);
+    
+    Route::prefix('/a')->group(function(){
+        
+        Route::redirect('dashboard', 'event');
 
+        Route::prefix('event')->group(function(){
+            $controller = eventController::class;
+            Route::get('/',[$controller,'index']);
+            Route::post('/',[$controller,'store']);
+            Route::get('e/{id}',[$controller,'edit']);
+            Route::post('u/{id}',[$controller,'update']);
+            Route::get('d/{id}',[$controller,'destroy']);
+        });
+        
+        Route::prefix('service')->group(function(){
+            $controller = serviceController::class;
+            Route::get('/',[$controller,'index']);
+            Route::post('/',[$controller,'store']);
+            Route::get('e/{id}',[$controller,'edit']);
+            Route::post('u/{id}',[$controller,'update']);
+            Route::get('d/{id}',[$controller,'destroy']);
+        });
 
+    });
+
+});

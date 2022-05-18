@@ -158,8 +158,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                        
+                    </div>    
                     @endforeach
                 </div>
                         {{ $event->links() }}
@@ -243,42 +242,17 @@
                     </div>
                 </div>
                 <div class="row">
+                    @foreach($service as $s)
                     <div class="col-12 col-md-6 my-4">
                         <div class="card bg-blue border-0 text-white text-center">
                             <div class="card-body">
-                                <h5 class="card-title heading-collaborate1">Beginnery’s Talent</h5>
-                                <p class="card-text collaborate1">Coming Soon</p>
-                                <a href="#/" class="btn btn-light rounded-pill my-3 px-5 py-2">LET'S BEGIN!</a>
+                                <h5 class="card-title heading-collaborate1">{{$s->nama}}</h5>
+                                <a href="{{'/s/'.$s->id}}" class="btn btn-light rounded-pill my-3 px-5 py-2">LET'S BEGIN!</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 my-4">
-                        <div class="card bg-blue border-0 text-white text-center">
-                            <div class="card-body">
-                                <h5 class="card-title heading-collaborate1">Upgrading Class</h5>
-                                <p class="card-text collaborate1">Coming Soon</p>
-                                <a href="#/" class="btn btn-light rounded-pill my-3 px-5 py-2">LET'S BEGIN!</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 my-4">
-                        <div class="card bg-blue border-0 text-white text-center">
-                            <div class="card-body">
-                                <h5 class="card-title heading-collaborate1">Private Class</h5>
-                                <p class="card-text collaborate1">Coming Soon</p>
-                                <a href="#/" class="btn btn-light rounded-pill my-3 px-5 py-2">LET'S BEGIN!</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 my-4">
-                        <div class="card bg-blue border-0 text-white text-center">
-                            <div class="card-body">
-                                <h5 class="card-title heading-collaborate1">Business Site</h5>
-                                <p class="card-text collaborate1">Coming Soon</p>
-                                <a href="#/" class="btn btn-light rounded-pill my-3 px-5 py-2">LET'S BEGIN!</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                    {{ $service->links() }}
                 </div>
             </div>
         </div>

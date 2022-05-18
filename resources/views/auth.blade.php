@@ -2,6 +2,24 @@
 
 <section class="bg-banner" style="padding: 50px 0">
     <div class="container">
+      @if (session('scs'))
+        <div class="row">
+          <div class="col">
+            <div class="alert alert-success" role="alert">
+              {{session('scs')}}
+            </div>
+          </div>
+        </div>
+      @endif
+      @if (session('err'))
+        <div class="row">
+          <div class="col">
+            <div class="alert alert-danger" role="alert">
+              {{session('err')}}
+            </div>
+          </div>
+        </div>
+      @endif
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card">

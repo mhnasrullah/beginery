@@ -12,7 +12,7 @@
                         <input type="hidden" name="lastposter" value={{$event->poster}}>
                         <div class="mb-3">
                           <label for="title" class="form-label">Title</label>
-                          <input type="text" class="form-control" id="title" required name="title" value={{$event->title}}>
+                          <input type="text" class="form-control" id="title" required name="title" value="{{$event->title}}">
                         </div>
                         <div class="mb-3">
                           <label for="time" class="form-label">Time</label>
@@ -25,6 +25,15 @@
                         <div class="mb-3">
                           <label for="poster" class="form-label">Poster</label>
                           <input type="file" class="form-control" id="poster" name="poster">
+                        </div>
+                        <div class="mb-3">
+                          <label for="service" class="form-label">Service</label>
+                          <select class="form-select" name="service" id="service">
+                            <option {{$event->service_id == null ? "selected" : ""}} value="">No Service</option>
+                              @foreach ($service as $s)
+                                  <option value={{$s->id}} {{$event->service_id == $s->id ? "selected" : ""}}>{{$s->nama}}</option>
+                              @endforeach
+                          </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                       </form>

@@ -164,6 +164,18 @@ button.btn.btn-default.button-home.linktree {
     text-align: center;
 }
 
+.bg-event-service{
+    inset : 0;
+    position : absolute;
+    z-index : 1;
+    /* linear-gradient: (#00000055,#000000); */
+    background : linear-gradient(#85c7e800,#85c7e8);
+}
+
+.text-blue{
+    color: var(--blue);
+}
+
 .about-three p {
     color: var(--secondary);
 }

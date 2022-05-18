@@ -3,51 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Str;
+use App\Models\Service;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
-
-class userController extends Controller
+class serviceController extends Controller
 {
-    public function auth(){
-        return view('auth');
-    }
-
-    public function reg(Request $r){
-        
-        User::create([
-            'name' => $r->name,
-            'email' => $r->email,
-            'password' => bcrypt($r->password),
-            'tanggal_lahir' => $r->tanggal,
-            'role' => "user",
-            'profesi' => $r->profesi,
-            'alamat' => $r->alamat,
-        ]);
-
-        return redirect('/auth')->with("scs","Proses Registrasi, Terima kasih sudah bergabung dengan kami");
-    }
-
-    public function log(Request $r){
-        if (Auth::attempt([
-            'email' => $r->email,
-            'password' => $r->password
-        ])) {
-            $r->session()->regenerate();
-            
-            return redirect('/');
-            // dd('login success');
-        }else{
-            return redirect('/auth')->with("err","Proses Masuk gagal, periksa kembali email dan passowrd anda");
-        }
-    }
-
-    public function out(){
-        session()->flush();
-        Auth::logout();
-        return redirect('/');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -55,7 +17,10 @@ class userController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'service' => Service::all()
+        ];
+        return view('admin.service',$data);
     }
 
     /**
@@ -76,7 +41,15 @@ class userController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newName = Str::random(10).'.'.$request->gambar->extension();
+        $request->gambar->storeAs('public/img/service',$newName);
+
+        Service::create([
+            'nama' => $request->nama,
+            'gambar' => $newName
+        ]);
+
+        return redirect('/a/service');
     }
 
     /**
@@ -98,7 +71,11 @@ class userController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [
+            'service' => Service::find($id)
+        ];
+
+        return view('admin.edit.service',$data);
     }
 
     /**
@@ -110,7 +87,25 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->gambar == null){
+            $data = [
+                'nama' => $request->nama
+            ];
+        }else{
+            $newName = Str::random(10).'.'.$request->gambar->extension();
+            $request->gambar->storeAs('public/img/service',$newName);
+            Storage::delete('/public/img/service/'.$request->lastgambar);
+
+            $data = [
+                'nama' => $request->nama,
+                'gambar' => $newName
+            ];
+        }
+
+        Service::where('id', $id)
+                ->update($data);
+        
+        return redirect('/a/service');
     }
 
     /**
@@ -121,6 +116,9 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $service = Service::find($id);
+        Storage::delete('/public/img/service/'.$service->gambar);
+        $service->delete();
+        return redirect('/a/service');
     }
 }

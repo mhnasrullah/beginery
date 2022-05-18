@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\Event;
+use App\Models\Service;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +20,8 @@ class eventController extends Controller
     public function index()
     {
         $data = [
-            'event' => Event::all()
+            'event' => Event::all(),
+            'service' => Service::all()
         ];
         return view('admin.event',$data);
     }
@@ -48,7 +50,8 @@ class eventController extends Controller
         Event::create([
             'title' => $request->title,
             'time' => $request->time,
-            'poster' => $newName
+            'poster' => $newName,
+            'service_id' => $request->service,
         ]);
 
         return redirect('/a/event');
@@ -75,7 +78,8 @@ class eventController extends Controller
     public function edit($id)
     {
         $data = [
-            'event' => Event::find($id)
+            'event' => Event::find($id),
+            'service' => Service::all(),
         ];
         return view('admin.edit.event',$data);
     }
@@ -92,7 +96,8 @@ class eventController extends Controller
         if($request->poster == null){
             $data = [
                 'title' => $request->title,
-                'time' => $request->time
+                'time' => $request->time,
+                'service_id' => $request->service,
             ];
         }else{
             $newName = Str::random(10).'.'.$request->poster->extension();
@@ -102,7 +107,8 @@ class eventController extends Controller
             $data = [
                 'title' => $request->title,
                 'time' => $request->time,
-                'poster' => $newName
+                'poster' => $newName,
+                'service_id' => $request->service,
             ];
         }
 
